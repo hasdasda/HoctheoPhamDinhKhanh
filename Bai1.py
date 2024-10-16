@@ -44,6 +44,14 @@ vect = CountVectorizer(ngram_range=(1,1))
 vect.fit_transform(['you have no dog','no, you have dog']).toarray()
 
 print(vect.vocabulary_)
+vect = CountVectorizer(ngram_range = (1,2))
+vect.fit_transform(['you have no dog','no, you have dog']).toarray()
+from scipy.spatial.distance import euclidean
+vect = CountVectorizer(ngram_range=(3,3), analyzer='char_wb')# Option 'char_wb' creates character n-grams only from text inside word boundaries
+n1, n2, n3, n4 = vect.fit_transform(['anderson', 'peterson', 'petrov', 'smith'])
+print(euclidean(n1, n2))
+print(euclidean(n2, n3))
+print(euclidean(n3, n4))
 
 # from sklearn.feature_extraction.text import CountVectorizer
 # corpus = [
@@ -62,3 +70,11 @@ print(vect.vocabulary_)
 # print(vectorizer2.get_feature_names_out())
 # print(X2.toarray())
 
+# Sau khi thực hiện dòng code sau đây sẽ cho kết quả là {'Rashmi': 0, 'likes': 5, 'ice': 4, 'cream': 2, 'hates': 3, 'chocolate': 1}
+# sentences = ['Rashmi likes ice cream', 'Rashmi hates chocolate.']
+# vectorizer = CountVectorizer(min_df=0, lowercase=False)
+# vectorizer.fit(sentences)
+# vectorizer.vocabulary_
+# vocabulary_ is a dict where keys are terms and values are indices in the feature matrix.
+#
+# Đây có thể giải thích: CountVectorizer converts a collection of text documents to a matrix of token counts. It produces a sparse Matrix of the counts of each word from the vocabulary. The Matrix shape is NxM (N is the number of documents (rows) and M is the size of the vocabulary (columns)). This numbers are simply indices of each word of the vocabulary in this matrix across columns.
