@@ -38,21 +38,18 @@
 #     print(bag_of_word(i))
 
 # Các biểu diễn theo túi từ có hạn chế đó là chúng ta không phân biệt được 2 câu văn có cùng các từ bới túi từ không phân biệt thứ tự trước sau của các từ trong một câu.Chặng như ‘you have no dog’ và ‘no, you have dog’ là 2 câu văn có biểu diễn giống nhau mặc dù có ý nghĩa trái ngược nhau. Chính vì thế phương pháp N-gram sẽ được sử dụng thay thế.
-
-from sklearn.feature_extraction.text import CountVectorizer
-vect = CountVectorizer(ngram_range=(1,1))
-vect.fit_transform(['you have no dog','no, you have dog']).toarray()
-
-print(vect.vocabulary_)
-vect = CountVectorizer(ngram_range = (1,2))
-vect.fit_transform(['you have no dog','no, you have dog']).toarray()
-from scipy.spatial.distance import euclidean
-vect = CountVectorizer(ngram_range=(3,3), analyzer='char_wb')# Option 'char_wb' creates character n-grams only from text inside word boundaries
-n1, n2, n3, n4 = vect.fit_transform(['anderson', 'peterson', 'petrov', 'smith'])
-print(euclidean(n1, n2))
-print(euclidean(n2, n3))
-print(euclidean(n3, n4))
-
+#
+# from sklearn.feature_extraction.text import CountVectorizer
+# vect = CountVectorizer(ngram_range=(1,1))
+# vect.fit_transform(['you have no dog','no, you have dog']).toarray()
+#
+# print(vect.vocabulary_)
+# vect = CountVectorizer(ngram_range = (1,2))
+# vect.fit_transform(['you have no dog','no, you have dog']).toarray()
+# from scipy.spatial.distance import euclidean
+# vect = CountVectorizer(ngram_range=(3,3), analyzer='char_wb')# Option 'char_wb' creates character n-grams only from text inside word boundaries
+# n1, n2, n3, n4 = vect.fit_transform(['anderson', 'peterson', 'petrov', 'smith'])
+# euclidean(),euclidean(),euclidean()
 # from sklearn.feature_extraction.text import CountVectorizer
 # corpus = [
 #     'This is the first document.',
@@ -78,3 +75,17 @@ print(euclidean(n3, n4))
 # vocabulary_ is a dict where keys are terms and values are indices in the feature matrix.
 #
 # Đây có thể giải thích: CountVectorizer converts a collection of text documents to a matrix of token counts. It produces a sparse Matrix of the counts of each word from the vocabulary. The Matrix shape is NxM (N is the number of documents (rows) and M is the size of the vocabulary (columns)). This numbers are simply indices of each word of the vocabulary in this matrix across columns.
+from sklearn.feature_extraction.text import CountVectorizer
+
+vect = CountVectorizer(ngram_range = (1, 1))
+vect.fit_transform(['you have no dog', 'no, you have dog']).toarray()
+vect.vocabulary_
+vect = CountVectorizer(ngram_range = (1, 2))
+vect.fit_transform(['you have no dog', 'no, you have dog']).toarray()
+vect.vocabulary_
+from sklearn.feature_extraction.text import CountVectorizer
+from scipy.spatial.distance import euclidean
+
+vect = CountVectorizer(ngram_range = (3, 3), analyzer = 'char_wb')
+n1, n2, n3, n4 = vect.fit_transform(['andersen', 'peterson', 'petrov', 'smith']).toarray()
+euclidean(n1, n2), euclidean(n2, n3), euclidean(n3, n4)
