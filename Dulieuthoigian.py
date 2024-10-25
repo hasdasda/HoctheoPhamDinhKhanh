@@ -11,5 +11,4 @@ for i, k in zip(dataset.columns, dataset.dtypes):
     print('{}: {}'.format(i,k))
 dataset['weekday'] = dataset['created'].apply(lambda x: x.date().weekday())
 print(dataset['weekday'].head())
-dataset['is_weekend'] = dataset['created'].apply(lambda x: 1 if x.date().weekday() in [5, 6] else 0)
-print(dataset['is_weekend'][:5])
+dataset['is_weekend'] = dataset['created'].apply(lambda)
