@@ -41,19 +41,37 @@ def _encode_sen(text):
     return sen_vec  # Trả về danh sách các chỉ số.
 x_test = _encode_sen('Alice is wonderful story. #')
 print(x_test)
+
 def _decode_sen(vec):
-    text = []
-    for i in vec:
-        let = int_to_chars[i]
-        text.append(let)
-        text = ''.join(text)
+    text = [] # Kởi tạo ột danh sách rỗng để chứa các ký tự giải mã
+    for i in vec: # Duyệt qua từng phần tử i trong vec
+        let = int_to_chars[i] # Lấy ký tự từ int_to_chars dựa trên chỉ số I
+        text.append(let) # Thêm ký tự đã lấy được vào danh sách text
+        text = ''.join(text) # Ghép các phần tử trong text thành một chuỗi
         return text
 
 # prepare the dataset of input to output pairs encoded as intergers
-seq_legth = 100
+seq_length = 100
 dataX = []
 dataY = []
-for i in range(0, n_chars - )
+for i in range(0, n_chars - seq_length, 1):
+    # Lấy ra 100 kí tự liền trước:
+    seq_in = raw_text[i: i+ seq_length]
+    # Lấy ra kí tự liền sau 100 kí tự đó
+    seq_out = raw_text[i+ seq_length]
+    dataX.append(_encode_sen(seq_in))
+    dataY.append(_encode_sen(seq_out)[0])
+    n_patterns = len(dataX)
+print("Total Patterns:", n_patterns)
+
+# Reshape X to be [samples, time steps, features]
+X_train = numpy.reshape(dataX, (n_patterns, seq_length, 1))
+# Normalize
+X_train = X_train / float(n_vocab)
+
+
+
+    # Lấy ra kí tự lie
 # import string
 # #string.ascii_lowercase
 # #string.punctuation
