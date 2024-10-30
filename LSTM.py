@@ -68,7 +68,21 @@ print("Total Patterns:", n_patterns)
 X_train = numpy.reshape(dataX, (n_patterns, seq_length, 1))
 # Normalize
 X_train = X_train / float(n_vocab)
+# One hot encode the output variable
+y_train = np_utils.to_categorical(dataY)
+print('X [samples, time steps, features] shape:', X_train.shape)
+print('Y shape:', y_train.shape)
 
+print(type(X_train))
+print(type(y_train))
+
+# Thống kê ố luọng các ký t theo nhóm
+import seaborn as sn
+import numpy as np
+import matplotlib.pyplot as plt
+plt.figure(figsize=(10,5))
+sn.countplot(sn.array(dataY))
+plt.xticks(np.arange(32),np.array(chars_new))
 
 
     # Lấy ra kí tự lie
