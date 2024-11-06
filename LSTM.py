@@ -76,7 +76,7 @@ print('Y shape:', y_train.shape)
 print(type(X_train))
 print(type(y_train))
 
-# Thống kê ố luọng các ký t theo nhóm
+# Thống kê ố luọng các ký tự theo nhóm
 import seaborn as sn
 import numpy as np
 import matplotlib.pyplot as plt
